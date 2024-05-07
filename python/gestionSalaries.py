@@ -8,7 +8,7 @@ class Salarie:
         self.prenom = prenom
         self.salaire = salaire
     def __str__(self):
-        return f"Nom et Prenom {self.nom} - {self.prenom} Salaire de Base : {self.salaire} TauxCs : {self.tauxCs} SalaireNET : {self.calculerSalaireNet()}"
+        return f"Nom et Prenom {self.nom} - {self.prenom} Salaire de Base : {self.salaire}"
     def calculerSalaireNet(self):
         salaireNet = self.salaire - (self.salaire * self.tauxCs)
         return salaireNet
@@ -56,9 +56,17 @@ class Salarie:
 
 ## Heritage :
 class Manager(Salarie):
-    def __init__(self, matricule=0, nom="", prenom="", salaire=float(0),equipe = []):
+    def __init__(self, matricule=0, nom="", prenom="", salaire=float(0),equipe = None):
         super().__init__(matricule, nom, prenom, salaire)
+        if equipe == None:
+            equipe = []
         self.equipe = equipe
+    
+    def afficheManager(self):
+        return super().__str__() + " " + self.equipe
+
+    def ajout_salarie(self, salarie):
+        self.equipe.append(salarie)
 
 
 if __name__ == '__main__':
@@ -89,7 +97,13 @@ if __name__ == '__main__':
 
 
     # instance des class fils :
-    managerA = Manager(1,"LEGDANI","AMINE",12000,[firstSalarie,secondSalarie])
+    managerA = Manager(1,"LEGDANI","AMINE",12000)
+    managerB = Manager(2,"ONZY","MERIEM",11000)
+
+    managerA.ajout_salarie(firstSalarie)
+    managerB.ajout_salarie(secondSalarie)
+
+    print(managerA.equipe)
 
     # verifier l incrementation de nombre de salaries :
     Salarie.afficheNombreSalarie()
