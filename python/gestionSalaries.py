@@ -68,6 +68,15 @@ class Manager(Salarie):
     def ajout_salarie(self, salarie):
         self.equipe.append(salarie)
 
+class ChefProjet:
+    def __init__(self,projet):
+        self.projet = projet
+
+# Heritage de deux Classes :
+class Gestionnaire(Salarie,ChefProjet):
+    def __init__(self, matricule=0, nom="", salaire=float(0),projet = ""):
+        super().__init__(matricule, nom, salaire)
+        ChefProjet.__init__(self,projet)
 
 if __name__ == '__main__':
     firstSalarie = Salarie(56898,'MARZOUG','KHALID',7000.51) #firsSalaire est de type Salarie()
@@ -110,3 +119,8 @@ if __name__ == '__main__':
 
     # proprety :
     print(firstSalarie.matricule)
+
+    # question 19 : Heritage :
+    gestionnaire1 = Gestionnaire(1234,"QACEM",97000,"HR_Access")
+    print(gestionnaire1.nom)
+    print(gestionnaire1.projet)
