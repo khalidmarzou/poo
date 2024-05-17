@@ -124,3 +124,4 @@ if __name__ == '__main__':
     gestionnaire1 = Gestionnaire(1234,"QACEM",97000,"HR_Access")
     print(gestionnaire1.nom)
     print(gestionnaire1.projet)
+    print(Gestionnaire.__mro__) # classification d ordre des class dans l heritage
